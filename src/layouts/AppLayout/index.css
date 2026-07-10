@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    background: #090B10;
+    color: white;
+    overflow: hidden; /* impede a página inteira de rolar */
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 324px;
+    background: radial-gradient(
+    ellipse 150% 330% at left 15%,
+    #081F27 1%,
+    #08151B 12%,
+    #091016 60%,
+    #090B10 90%
+    );
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 0px;
+    flex-shrink: 0;
+    align-items: center;
+    border-right: 1px solid #323232;
+}
+
+.main-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+.imagemLogo {
+    width: 60px;
+    height: 56px;
+    border-radius: 20px;
+}
+
+.logo {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 30px;
+    
+}
+
+.paginas {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.paginas.active {
+    background-color: #2451d91f;
+}
+
+.paginas:hover {
+    background-color: #2451d91f;
+}
+
+
+.profile {
+    border: 1px solid #323232;
+    max-width: 250px;
+    width: 100%;
+    height: 80px;
+    background-color: #12151F;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 10px;
+}
+
+
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to right,#00545F 0%, #008192 59%, #00AEC5 100%);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-profile{
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.description-profile {
+    margin: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff60;
+}
+
+.profile-texts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
