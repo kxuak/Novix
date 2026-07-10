@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Card from '../../components/Card'
+import GoalForm from '../../components/GoalForm'
+import type { NewGoalData } from '../../components/GoalForm'
 import './index.css'
 import { DiamondIcon } from '../../components/DiamondIcon.tsx';
 
@@ -10,110 +12,175 @@ interface Goal {
   percentage: number;
   currentValue: string;
   targetValue: string;
+  icon: string;
+  color: string;
 }
 
 
 const Goals = () => {
 
   const [goals, setGoals] = useState<Goal[]>([]);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editingGoal, setEditingGoal] = useState<Goal | null>(null); // NOVO
 
+  const calculatePercentage = (current: string, target: string) => {
+    const t = Number(target);
+    const c = Number(current);
+    return t > 0 ? Math.min(100, Math.round((c / t) * 100)) : 0;
+  };
 
-  const addGoal = () => {
+  const handleAddGoal = (data: NewGoalData) => {
+    setGoals([
+      ...goals,
+      {
+        id: Date.now(),
+        title: data.title,
+        percentage: calculatePercentage(data.currentValue, data.targetValue),
+        currentValue: data.currentValue,
+        targetValue: data.targetValue,
+        icon: data.icon,
+        color: data.color,
+      },
+    ]);
 
-  setGoals([
-    ...goals,
+    setIsFormOpen(false);
+  };
 
-    {
-      id: Date.now(),
-      title: `Nova meta ${goals.length + 1}`,
-      percentage: 0,
-      currentValue: "0",
-      targetValue: "100",
-    }
+  const handleEditGoal = (data: NewGoalData) => {
+    if (!editingGoal) return;
 
-  ]);
+    setGoals(
+      goals.map((g) =>
+        g.id === editingGoal.id
+          ? {
+              ...g,
+              title: data.title,
+              currentValue: data.currentValue,
+              targetValue: data.targetValue,
+              icon: data.icon,
+              color: data.color,
+              percentage: calculatePercentage(data.currentValue, data.targetValue),
+            }
+          : g
+      )
+    );
 
-};
+    setEditingGoal(null);
+  };
 
+  const handleDeleteGoal = (id: number) => {
+    setGoals(goals.filter((g) => g.id !== id));
+  };
 
   return (
-  <div className="main-goals">
+    <div className="main-goals">
 
-    <h2 className='subtitle-goal'>Destino</h2>
+      <h2 className='subtitle-goal'>Destino</h2>
+      <h1 className='title-goal'>Controle seus objetivos</h1>
 
-    <h1 className='title-goal'>Controle seus objetivos</h1>
-    <div className="first-main-goals">
-      <div className="goals">
-  <h4 className="goals-title">Minhas metas</h4>
+      <div className="first-main-goals">
+        <div className="goals">
+          <h4 className="goals-title">Minhas metas</h4>
 
-  <div className="goals-cards">
-    {goals.map((goal) => (
-      <Card
-        key={goal.id}
-        variant="goal"
-        title={goal.title}
-        percentage={goal.percentage}
-        currentValue={goal.currentValue}
-        targetValue={goal.targetValue}
-        icon="/school.svg"
-      />
-    ))}
+          <div className="goals-cards">
+            {goals.map((goal) => (
+              <Card
+                key={goal.id}
+                variant="goal"
+                title={goal.title}
+                percentage={goal.percentage}
+                currentValue={goal.currentValue}
+                targetValue={goal.targetValue}
+                icon={goal.icon}
+                color={goal.color}
+                onEdit={() => setEditingGoal(goal)}
+                onDelete={() => handleDeleteGoal(goal.id)}
+              />
+            ))}
 
-    <div className="add-goal-card" onClick={addGoal}>
-      <img src="./circle-dashed-plus.svg" />
-    </div>
-  </div>
-</div>
+            <div className="add-goal-card" onClick={() => setIsFormOpen(true)}>
+              <img src="./circle-dashed-plus.svg" />
+            </div>
+          </div>
+        </div>
 
-      <div className="goals-resume">
-  <div className="metas-resume-title">
-    <h4>Resumo das metas</h4>
-  </div>
-  <div className="metas-resume">
-    <div className="metas-resumo">
-      <div className="metas-resumo-header">
-        <h5>Metas ativas</h5>
-        <div className="metas-ativas-icon">
-          <img src="/trending-up.svg" />
+        <div className="goals-resume">
+          <div className="metas-resume-title">
+            <h4>Resumo das metas</h4>
+          </div>
+          <div className="metas-resume">
+            <div className="metas-resumo">
+              <div className="metas-resumo-header">
+                <h5>Metas ativas</h5>
+                <div className="metas-ativas-icon">
+                  <img src="/trending-up.svg" />
+                </div>
+              </div>
+              <span className="metas-resumo-value">
+                {goals.filter((g) => g.percentage < 100).length}
+              </span>
+            </div>
+
+            <div className="metas-resumo">
+              <div className="metas-resumo-header">
+                <h5>Metas concluídas</h5>
+                <div className="metas-check-icon">
+                  <img src="/check.svg" />
+                </div>
+              </div>
+              <span className="metas-resumo-value">
+                {goals.filter((g) => g.percentage >= 100).length}
+              </span>
+            </div>
+
+            <div className="metas-resumo">
+              <div className="metas-resumo-header">
+                <h5>Total guardado</h5>
+                <div className="metas-guardado-icon">
+                  <img src="/currency-dollar.svg"/>
+                </div>
+              </div>
+              <span className="metas-resumo-value">
+                R${goals.reduce((sum, g) => sum + Number(g.currentValue), 0)}
+              </span>
+            </div>
+
+            <div className="metas-resumo">
+              <div className="metas-resumo-header">
+                <h5>Total de metas</h5>
+                <div className="metas-total-icon">
+                  <DiamondIcon color='#FDC958'/>
+                </div>
+              </div>
+              <span className="metas-resumo-value">{goals.length}</span>
+            </div>
+          </div>
         </div>
       </div>
-      <span className="metas-resumo-value">6</span>
-    </div>
 
-    <div className="metas-resumo">
-      <div className="metas-resumo-header">
-        <h5>Metas concluídas</h5>
-        <div className="metas-check-icon">
-          <img src="/check.svg" />
-        </div>
-      </div>
-      <span className="metas-resumo-value">6</span>
-    </div>
+      {isFormOpen && (
+        <GoalForm
+          onClose={() => setIsFormOpen(false)}
+          onSubmit={handleAddGoal}
+        />
+      )}
 
-    <div className="metas-resumo">
-      <div className="metas-resumo-header">
-        <h5>Total guardado</h5>
-        <div className="metas-guardado-icon">
-          <img src="/currency-dollar.svg"/>
-        </div>
-      </div>
-      <span className="metas-resumo-value">6</span>
-    </div>
+      {editingGoal && (
+        <GoalForm
+          onClose={() => setEditingGoal(null)}
+          onSubmit={handleEditGoal}
+          initialData={{
+            title: editingGoal.title,
+            targetValue: editingGoal.targetValue,
+            currentValue: editingGoal.currentValue,
+            icon: editingGoal.icon,
+            color: editingGoal.color,
+          }}
+        />
+      )}
 
-    <div className="metas-resumo">
-      <div className="metas-resumo-header">
-        <h5>Total de metas</h5>
-        <div className="metas-total-icon">
-          <DiamondIcon color='#FDC958'/>
-        </div>
-      </div>
-      <span className="metas-resumo-value">6</span>
     </div>
-  </div>
-</div>
-    </div>
-  </div>
-)
+  )
 }
 
 

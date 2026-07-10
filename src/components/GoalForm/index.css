@@ -1,0 +1,168 @@
+.goal-form-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.goal-form-modal {
+    width: 100%;
+    max-width: 420px;
+
+    background: #12151f;
+    border: 1px solid #323232;
+    border-radius: 20px;
+
+    padding: 32px 24px 24px 24px;
+
+    color: #fff;
+}
+
+.goal-form-modal h3 {
+    margin: 0 0 20px 0;
+    font-size: 20px;
+}
+
+.goal-form-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.goal-form-modal label {
+    font-size: 13px;
+    color: #a1a1aa;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.goal-form-modal input {
+    background: #171a24;
+    border: 1px solid #323232;
+    border-radius: 10px;
+
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.icon-options,
+.color-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.icon-option {
+    width: 42px;
+    height: 42px;
+
+    background: #171a24;
+    border: 1px solid #323232;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.icon-option-mask {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+
+    background-color: #fff;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.icon-option.selected {
+    border-color: #2e9bff;
+    background: #1c3558;
+}
+
+.color-option {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.color-option.selected {
+    border-color: #fff;
+}
+
+.goal-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.goal-form-actions button {
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: 1px solid #323232;
+    color: #b8b8b8;
+}
+
+.confirm-btn {
+    background: linear-gradient(to left,#00545F 10%, #008192 60%, #00AEC5 100%);
+    border: none;
+    color: #fff;
+}
+
+.input-prefix {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-prefix span {
+    position: absolute;
+    left: 12px;
+    font-size: 14px;
+    color: #a1a1aa;
+    pointer-events: none;
+}
+
+.input-prefix input {
+    width: 100%;
+    padding-left: 34px !important;
+}
+
+.form-error {
+    margin: -4px 0 0 0;
+    font-size: 13px;
+    color: #f02d2d;
+}
+
+
+@media (max-width: 480px) {
+    .goal-form-modal {
+        max-width: 92vw;
+        padding: 24px 18px 18px 18px;
+    }
+}

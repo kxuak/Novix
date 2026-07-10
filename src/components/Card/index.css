@@ -33,7 +33,6 @@
 }
 
 .goal-header strong{
-    color:#2E9BFF;
     font-size:32px;
     font-weight:700;
 }
@@ -107,11 +106,38 @@
 
 .goal-progress-fill{
     height:100%;
-    border-radius:999px;
-    background:#2E9BFF;
+    border-radius:999px
 }
 
 
 .info-goal {
     color: #ffffff99;
+}
+
+.goal-icon-mask {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+
+@media (max-width: 480px) {
+    .goal-card {
+        width: 100%;
+    }
+
+    .goal-header strong {
+        font-size: 26px;
+    }
+
+    .goal-info span {
+        font-size: 17px;
+    }
 }

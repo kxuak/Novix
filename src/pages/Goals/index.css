@@ -205,7 +205,31 @@
     border-radius: 10px;
 }
 
-.diamond {
-    width: 20px;
-    height: 20px;
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+    .first-main-goals {
+        flex-direction: column;
+    }
+
+    .goals-resume {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .title-goal {
+        font-size: 28px;
+    }
+
+    .goals {
+        padding: 20px;
+    }
+
+    .goals-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .metas-resume {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

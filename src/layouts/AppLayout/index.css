@@ -135,3 +135,81 @@ nav {
     flex-direction: column;
     justify-content: center;
 }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
+
+    .layout {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    /* sidebar vira uma barra de navegação fixa embaixo */
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid #323232;
+        z-index: 100;
+    }
+
+    .main-sidebar {
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav {
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+    }
+
+    .paginas {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        padding: 0;
+        height: 100%;
+        width: 25%;
+        font-size: 0; /* esconde o texto, mantém só o ícone */
+        border-radius: 0;
+    }
+
+    .paginas img,
+    .paginas svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .content {
+        padding: 16px;
+        padding-bottom: 90px; /* espaço pra não ficar atrás da barra fixa */
+    }
+}

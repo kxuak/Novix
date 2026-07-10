@@ -14,6 +14,9 @@ type CardProps =
       currentValue: string;
       targetValue: string;
       icon: string;
+      color: string;
+      onEdit: () => void;   // NOVO
+      onDelete: () => void; // NOVO
     };
 
 
@@ -22,68 +25,73 @@ const Card = (props: CardProps) => {
   if (props.variant === "summary") {
     return (
       <div className="card">
-
         <div className="card-header">
           <span>{props.title}</span>
           {props.icon}
         </div>
-
         <h2>{props.value}</h2>
-
       </div>
     );
   }
 
 
-    return (
+  return (
     <div className="card goal-card">
 
       <div className="goal-header">
 
         <div className="goal-info">
 
-          <div className="goal-icon">
-            <img src={props.icon} alt={props.title} />
+          <div
+            className="goal-icon"
+            style={{ backgroundColor: `${props.color}30` }}
+          >
+            <span
+              className="goal-icon-mask"
+              style={{
+                backgroundColor: props.color,
+                WebkitMaskImage: `url(${props.icon})`,
+                maskImage: `url(${props.icon})`,
+              }}
+            />
           </div>
 
           <span>{props.title}</span>
 
         </div>
 
-        <strong>{props.percentage}%</strong>
+        <strong style={{ color: props.color }}>{props.percentage}%</strong>
 
       </div>
 
 
-     <div className="goal-values">
+      <div className="goal-values">
 
-    <div>
+        <div>
+          <p><span className="info-goal">Meta:</span> R${props.targetValue}</p>
+          <p><span className="info-goal">Atual:</span> R${props.currentValue}</p>
+        </div>
 
-        <p><span className="info-goal">Meta:</span> R${props.targetValue}</p>
-        <p><span className="info-goal">Atual:</span> R${props.currentValue}</p>
-
-    </div>
-
-    <div className="goal-buttons">
-
-        <button className="goal-edit-button">Editar</button>
-
-        <button className="delete-btn">
+        <div className="goal-buttons">
+          <button className="goal-edit-button" onClick={props.onEdit}>
+            Editar
+          </button>
+          <button className="delete-btn" onClick={props.onDelete}>
             <img src="./trash.svg"/>
-        </button>
+          </button>
+        </div>
 
-    </div>
-
-    </div>
+      </div>
 
 
       <div className="goal-progress">
-
         <div
           className="goal-progress-fill"
-          style={{ width: `${props.percentage}%` }}
+          style={{
+            width: `${props.percentage}%`,
+            backgroundColor: props.color,
+          }}
         />
-
       </div>
 
     </div>
