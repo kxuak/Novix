@@ -5,6 +5,12 @@ body {
     overflow: hidden; /* impede a página inteira de rolar */
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .layout {
     display: flex;
     height: 100vh;
@@ -40,7 +46,9 @@ body {
 .content {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;   /* NOVO — trava qualquer estouro horizontal */
     padding: 24px;
+    max-width: 100%;
 }
 
 .imagemLogo {
@@ -134,6 +142,59 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* ===== RESPONSIVO (tablet / sidebar estreita) ===== */
+@media (max-width: 1100px) and (min-width: 769px) {
+    .sidebar {
+        width: 220px;
+        padding: 24px 0;
+    }
+
+    .logo,
+    nav,
+    .profile {
+        width: 100%;
+        max-width: 180px;
+    }
+
+    .imagemLogo {
+        width: 44px;
+        height: 40px;
+    }
+
+    .logo h2 {
+        font-size: 18px;
+    }
+
+    .paginas {
+        font-size: 16px;
+        padding-left: 14px;
+        gap: 8px;
+        height: 44px;
+    }
+
+    .paginas img,
+    .paginas svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .profile {
+        height: 68px;
+    }
+
+    .title-profile {
+        font-size: 15px;
+    }
+
+    .description-profile {
+        font-size: 12px;
+    }
+
+    .content {
+        padding: 20px;
+    }
 }
 
 /* ===== RESPONSIVO ===== */

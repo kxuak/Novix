@@ -141,3 +141,19 @@
         font-size: 17px;
     }
 }
+
+@media (max-width: 380px) {
+    .goal-values {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .goal-buttons {
+        width: 100%;
+    }
+
+    .goal-buttons button {
+        flex: 1;
+    }
+}
