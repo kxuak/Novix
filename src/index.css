@@ -2,4 +2,28 @@
 
 :root {
   font-family: "Inter", sans-serif;
+
+  --bg-page: #090B10;
+  --bg-panel: #12151f;
+  --bg-input: #171a24;
+  --bg-hover: #1b1f2b;
+  --border-color: #323232;
+  --border-soft: #232323;
+  --text-primary: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-placeholder: #71717a;
+  --color-scheme: dark;
+}
+
+body.light {
+  --bg-page: #F2F3F7;
+  --bg-panel: #FFFFFF;
+  --bg-input: #F1F2F6;
+  --bg-hover: #E7E9F0;
+  --border-color: #E1E3EA;
+  --border-soft: #EDEEF2;
+  --text-primary: #14161C;
+  --text-muted: #5B5F6B;
+  --text-placeholder: #9A9EA8;
+  --color-scheme: light;
 }

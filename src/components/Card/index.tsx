@@ -5,7 +5,9 @@ type CardProps =
       variant: "summary";
       title: string;
       value: string;
-      icon: string;
+      icon: React.ReactNode;
+      iconColor: string;
+      progress?: number;
     }
   | {
       variant: "goal";
@@ -27,9 +29,30 @@ const Card = (props: CardProps) => {
       <div className="card">
         <div className="card-header">
           <span>{props.title}</span>
-          {props.icon}
+          <div
+            className="card-icon"
+            style={{
+              backgroundColor: `${props.iconColor}30`,
+              color: props.iconColor,
+            }}
+          >
+            {props.icon}
+          </div>
         </div>
+
         <h2>{props.value}</h2>
+
+        {props.progress !== undefined && (
+          <div className="card-progress">
+            <div
+              className="card-progress-fill"
+              style={{
+                width: `${props.progress}%`,
+                backgroundColor: props.iconColor,
+              }}
+            />
+          </div>
+        )}
       </div>
     );
   }

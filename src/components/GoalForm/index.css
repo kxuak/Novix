@@ -50,6 +50,19 @@
     padding: 10px 12px;
     color: #fff;
     font-size: 14px;
+    color-scheme: dark;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.goal-form-modal input[type="date"],
+.goal-form-modal input[type="time"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 42px;
+    line-height: 42px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .icon-options,
