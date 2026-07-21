@@ -10,24 +10,27 @@ import LadingPage from "./layouts/LadingPage";
 import AppLayout from "./layouts/AppLayout";
 import { DataProvider } from "./context/DataContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { UserProvider } from "./context/UserContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <DataProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout/>}>
-            <Route path="/home" element={<Home/>}/> 
-            <Route path="/transacoes" element={<Transactions/>}/>
-            <Route path="/metas" element={<Goals/>}/>
-            <Route path="/settings" element={<Settings/>}/>
-            </Route>
+      <UserProvider>
+        <DataProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout/>}>
+              <Route path="/home" element={<Home/>}/> 
+              <Route path="/transacoes" element={<Transactions/>}/>
+              <Route path="/metas" element={<Goals/>}/>
+              <Route path="/settings" element={<Settings/>}/>
+              </Route>
 
-            <Route path="/" element={<LadingPage/>}/> 
-          </Routes>
-        </BrowserRouter>
-      </DataProvider>
+              <Route path="/" element={<LadingPage/>}/> 
+            </Routes>
+          </BrowserRouter>
+        </DataProvider>
+      </UserProvider>
     </ThemeProvider>
   </StrictMode>
 );

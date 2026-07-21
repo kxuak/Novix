@@ -16,9 +16,10 @@
 .goals {
     flex: 2;
 
-    border: 1px solid #323232;
-    background-color: #12151f;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-panel);
     border-radius: 30px;
+    box-shadow: var(--panel-shadow);
 
     padding: 20px 30px;
     
@@ -32,7 +33,7 @@
 .goals-title {
     margin: 0px;
     margin-top: 20px;
-    color: #fff;
+    color: var(--text-primary);
     font-size: 22px;
     font-weight: 600;
 }
@@ -52,7 +53,7 @@
 
     padding: 15px 0px;
 
-    border: 2px dashed #323232;
+    border: 2px dashed var(--border-color);
     border-radius: 20px;
 
     display: flex;
@@ -66,7 +67,7 @@
 }
 
 .add-goal-card:hover {
-    background: #1b1f2b;
+    background: var(--bg-hover);
 }
 
 .subtitle-goal {
@@ -85,9 +86,10 @@
 .goals-resume {
     flex: 1;
 
-    border: 1px solid #323232;
-    background-color: #12151f;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-panel);
     border-radius: 30px;
+    box-shadow: var(--panel-shadow);
 
     padding: 20px 20px;
 
@@ -103,7 +105,7 @@
     margin: 0;
     font-size: 22px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .metas-resume {
@@ -115,9 +117,9 @@
 }
 
 .metas-resumo {
-    border: 1px solid #323232;
+    border: 1px solid var(--border-color);
     border-radius: 20px;
-    background-color: #171a24;
+    background-color: var(--bg-input);
 
     padding: 12px 15px;
 
@@ -138,7 +140,7 @@
     margin: 0;
     font-size: 12px;
     font-weight: 500;
-    color: #a1a1aa;
+    color: var(--text-muted);
 }
 
 
@@ -150,7 +152,7 @@
 .metas-resumo-value {
     font-size: 22px;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-primary);
     line-height: 1;
 }
 

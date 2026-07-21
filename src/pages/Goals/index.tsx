@@ -2,74 +2,31 @@ import { useState } from 'react'
 import Card from '../../components/Card'
 import GoalForm from '../../components/GoalForm'
 import type { NewGoalData } from '../../components/GoalForm'
+import type { Goal } from '../../context/DataContext'
+import { useData } from '../../context/DataContext'
 import './index.css'
 import { DiamondIcon } from '../../components/DiamondIcon.tsx';
 
 
-interface Goal {
-  id: number;
-  title: string;
-  percentage: number;
-  currentValue: string;
-  targetValue: string;
-  icon: string;
-  color: string;
-}
-
-
 const Goals = () => {
 
-  const [goals, setGoals] = useState<Goal[]>([]);
+  const { goals, addGoal, updateGoal, deleteGoal } = useData();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [editingGoal, setEditingGoal] = useState<Goal | null>(null); // NOVO
-
-  const calculatePercentage = (current: string, target: string) => {
-    const t = Number(target);
-    const c = Number(current);
-    return t > 0 ? Math.min(100, Math.round((c / t) * 100)) : 0;
-  };
+  const [editingGoal, setEditingGoal] = useState<Goal | null>(null);
 
   const handleAddGoal = (data: NewGoalData) => {
-    setGoals([
-      ...goals,
-      {
-        id: Date.now(),
-        title: data.title,
-        percentage: calculatePercentage(data.currentValue, data.targetValue),
-        currentValue: data.currentValue,
-        targetValue: data.targetValue,
-        icon: data.icon,
-        color: data.color,
-      },
-    ]);
-
+    addGoal(data);
     setIsFormOpen(false);
   };
 
   const handleEditGoal = (data: NewGoalData) => {
     if (!editingGoal) return;
-
-    setGoals(
-      goals.map((g) =>
-        g.id === editingGoal.id
-          ? {
-              ...g,
-              title: data.title,
-              currentValue: data.currentValue,
-              targetValue: data.targetValue,
-              icon: data.icon,
-              color: data.color,
-              percentage: calculatePercentage(data.currentValue, data.targetValue),
-            }
-          : g
-      )
-    );
-
+    updateGoal(editingGoal.id, data);
     setEditingGoal(null);
   };
 
   const handleDeleteGoal = (id: number) => {
-    setGoals(goals.filter((g) => g.id !== id));
+    deleteGoal(id);
   };
 
   return (

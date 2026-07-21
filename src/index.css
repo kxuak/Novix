@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 :root {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
   --bg-page: #090B10;
   --bg-panel: #12151f;
@@ -13,17 +14,19 @@
   --text-muted: #a1a1aa;
   --text-placeholder: #71717a;
   --color-scheme: dark;
+  --panel-shadow: none;
 }
 
 body.light {
-  --bg-page: #F2F3F7;
+  --bg-page: #E9EBF2;
   --bg-panel: #FFFFFF;
   --bg-input: #F1F2F6;
   --bg-hover: #E7E9F0;
-  --border-color: #E1E3EA;
-  --border-soft: #EDEEF2;
+  --border-color: #D6D9E2;
+  --border-soft: #E4E6ED;
   --text-primary: #14161C;
   --text-muted: #5B5F6B;
   --text-placeholder: #9A9EA8;
   --color-scheme: light;
+  --panel-shadow: 0 1px 2px rgba(20, 22, 28, 0.04), 0 4px 12px rgba(20, 22, 28, 0.06);
 }

@@ -8,6 +8,7 @@ import EventForm from "../../components/EventForm";
 import HistoryModal from "../../components/HistoryModal";
 import { useData } from "../../context/DataContext";
 import { useTheme } from "../../context/ThemeContext";
+import { useUser } from "../../context/UserContext";
 
 /* ===== Ícone via máscara (usa os svgs importados, cor 100% controlável) ===== */
 
@@ -71,6 +72,7 @@ const getMonthKey = (date = new Date()) =>
 const Home = () => {
   const { transactions, addTransaction, goals, events, addEvent, deleteEvent } = useData();
   const { theme, toggleTheme } = useTheme();
+  const { user } = useUser();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isTxFormOpen, setIsTxFormOpen] = useState(false);
@@ -182,7 +184,7 @@ const Home = () => {
     <div className="main-home">
       <div className="home-header">
         <div className="home-header-text">
-          <h1>Olá, Cliente Novix</h1>
+          <h1>Olá, {user.name}</h1>
           <p>Aqui está um resumo da sua vida financeira hoje.</p>
         </div>
 

@@ -1,8 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import './index.css'
 import { DiamondIcon } from '../../components/DiamondIcon.tsx'
+import { useUser } from '../../context/UserContext'
 
 const AppLayout = () => {
+  const { user } = useUser();
+
   return (
     <div className="layout">
       <aside className="sidebar">
@@ -24,8 +27,8 @@ const AppLayout = () => {
           <div className="profile-info">
               <div className='user-photo'><img src="/user.svg"/></div>
               <div className='profile-texts'>
-                <p className="title-profile">Cliente Novix</p>
-                <p className="description-profile">Plano free</p>
+                <p className="title-profile">{user.name}</p>
+                <p className="description-profile">{user.plan}</p>
               </div>
           </div>
         </div>
